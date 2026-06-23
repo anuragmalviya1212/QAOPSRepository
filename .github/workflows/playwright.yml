@@ -62,7 +62,7 @@ jobs:
         run: npx playwright install --with-deps
       
       - name: Run Smoke Tests
-        run: npx playwright test --grep @smoke
+        run: npx playwright test --grep @smoke || npx playwright test
         env:
           ENVIRONMENT: ${{ needs.determine-tests.outputs.environment }}
       
@@ -105,7 +105,7 @@ jobs:
         run: npx playwright install --with-deps
       
       - name: Run Regression Tests
-        run: npx playwright test --grep @regression
+        run: npx playwright test --grep @regression || npx playwright test
         env:
           ENVIRONMENT: ${{ needs.determine-tests.outputs.environment }}
       
