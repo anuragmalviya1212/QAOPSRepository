@@ -19,7 +19,7 @@ export default defineConfig({
   },
   retries: 0,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [['html']],
+  reporter: [['html'], ['github'], ['allure-playwright']],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
