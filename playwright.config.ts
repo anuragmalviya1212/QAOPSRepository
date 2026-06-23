@@ -41,7 +41,7 @@ export default defineConfig({
     browserName: 'chromium',
     video: 'on',
     screenshot: 'on',
-    headless: false,
+    headless: true,
   },
 
   /* Configure projects for major browsers */
