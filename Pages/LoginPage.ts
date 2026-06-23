@@ -10,18 +10,30 @@ export class LoginPage extends LoginPageLocators{
     }
 
     async navigateURL(){
-        await this.page.goto("https://rahulshettyacademy.com/loginpagePractise/");
+        try {
+            await this.page.goto("https://rahulshettyacademy.com/loginpagePractise/", { waitUntil: 'networkidle' });
+            return this;
+        } catch (error) {
+            console.error('Navigation failed:', error);
+            throw error;
+        }
     }
     async validLogin(){
-        await this.usernameInput.fill(this.Dataset.Username);
-        await this.passwordInput.fill(this.Dataset.Password);
-        await this.userRadioButton.click();
-        await this.dialogText.waitFor();
-        const dialogText = await this.dialogText.textContent();
-        expect(dialogText).toBe("You will be limited to only fewer functionalities of the app. Proceed?");
-        await this.okayButton.click();
-        await this.selectedTeacherCombobox.selectOption("Teacher");
-        await this.termsAndConditionsCheckbox.check();
-        await this.signInButton.click();
+        try {
+            await this.usernameInput.fill(this.Dataset.Username);
+            await this.passwordInput.fill(this.Dataset.Password);
+            await this.userRadioButton.click();
+            await this.dialogText.waitFor({ timeout: 10000 });
+            const dialogText = await this.dialogText.textContent();
+            expect(dialogText).toBe("You will be limited to only fewer functionalities of the app. Proceed?");
+            await this.okayButton.click();
+            await this.selectedTeacherCombobox.selectOption("Teacher");
+            await this.termsAndConditionsCheckbox.check();
+            await this.signInButton.click();
+            return this;
+        } catch (error) {
+            console.error('Login validation failed:', error);
+            throw error;
+        }
     }
 }

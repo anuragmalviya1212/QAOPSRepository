@@ -6,7 +6,7 @@ export class PageObject {
         this.loginPage = new LoginPage(page);
     }
 
-    async loginToApplication() {
+    loginToApplication() {
         return this.loginPage;
     }
 }
